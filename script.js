@@ -21,11 +21,31 @@ toggleButton.addEventListener('click', () => {
 
 });
 
-document.querySelector('.save').addEventListener('click', ()=> {
-  addToDo();
-});
+// document.querySelector('.save').addEventListener('click', ()=> {
+//   addToDo();
+// });
 
-let todos = [];
+const todoform = document.querySelector('.todo-text');
+todoform.addEventListener('keydown', (event) => {
+ if (event.key === 'Enter'){
+  addToDo();
+ }
+})
+
+let todos = [{
+  name: "Complete online JavaScript course"},
+  {
+  name: "Jog around the park 3x"},
+  {
+    name: "10 minutes meditation"},
+  {
+    name: "Read for 1 hour"},
+  {
+    name: "Pick up groceries"},
+  {
+    name: "Conplete ToDo App on Frontend Mentor"}     
+  
+];
 displayTodo;
 
 
@@ -39,10 +59,13 @@ function displayTodo(){
  
 
   todos.forEach(function(toDo, index){
+    const name = toDo.name;
     const disp = `
-    <input type="checkbox">
-    <div>${toDo}</div>
+    <div class="new-todo">
+    <input class="todo-check" type="checkbox">
+    <div>${name}</div>
     <button class="delete-todo">&times</button>
+    </div>
     `
     ;
 
@@ -67,10 +90,10 @@ function displayTodo(){
 function addToDo (){
 
    const toDoInput = document.querySelector('.todo-tab');
-   const toDo = toDoInput.value;
+   const name = toDoInput.value;
 
-   todos.push(toDo);
-   console.log(toDo);
+   todos.push({name});
+   console.log(name);
    
    toDoInput.value =  '';
   displayTodo();

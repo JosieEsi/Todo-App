@@ -1,3 +1,4 @@
+@import url('https://fonts.google.com/specimen/Josefin+Sans');
 *{
     margin: 0;
     padding: 0;
@@ -14,6 +15,69 @@
  .darkmode{
     background-color: black;
  }
+
+ .heading{
+   
+   color:white;
+   letter-spacing: 8px;
+   left: 450px;
+   top: 45px;
+   position:absolute;
+   
+ }
+
+ .topbackground{
+   background-color: transparent;
+   position: relative;
+ }
+
+
+ .todo-form{
+   position: absolute;
+   top: 120px;
+   left: 450px;
+ }
+
+ .todo-text{
+  border: 12px solid white;
+  border-radius: 5px;
+  width: 450px;
+  background-color: hsl(0, 0%, 98%);
+  }
+
+ .todo-tab{
+   border: none;
+   
+  
+ }
+
+ .todo-list{
+   border: 12px solid white;
+  border-radius: 5px;
+  width: 450px;
+  margin-top: 15px;
+  /* display: flex;
+  flex-direction: row; */
+ }
+
+ .new-todo{
+   display:flex;
+   flex-direction: row;
+   background-color: hsl(0, 0%, 98%);
+   padding: 10px;
+ }
+ 
+.save{
+   box-shadow: none;
+   border: 3px solid white;
+}
+
+
+.todo-check{
+   background-color: white ;
+   border-radius: 70%;
+   margin-right: 10px;
+}
 
     @media screen and (max-width:375px){
        

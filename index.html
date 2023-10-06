@@ -15,33 +15,36 @@
 <body>
 
 <div>
-  <h1>Todo</h1>
+ 
 
 
 
-<img src="/images/bg-desktop-light.jpg" alt="" class="lightmode desktop-image" id="desktop-lightmode">
-<img src="/images/bg-desktop-dark.jpg" alt="" class="darkmode desktop-image" style="display: none;" id="desktop-darkmode">
+<img src="/images/bg-desktop-light.jpg" alt="" class="lightmode desktop-image topbackground" id="desktop-lightmode">
+<img src="/images/bg-desktop-dark.jpg" alt="" class="darkmode desktop-image topbackground" style="display: none;" id="desktop-darkmode">
 
-
+<h1 class="heading">TODO</h1>
   
 
 </div>
 <div class="todo-form">
-<input type="checkbox">  
-<input type="text" placeholder="Create  a new todo..." class="todo-tab">
-<button class="save" type="submit">Save</button>
+<div class="todo-text">
+<input class="todo-check" type="checkbox">  
+<input type="text" placeholder="Create  a new to do..." class="todo-tab">
+<!-- <button class="save" type="submit">Save</button> -->
 </div>
 <div class="todo-list">
-  
+
 </div>
+</div>
+<div>
     <!-- Add dynamic number --> items left
   All
   Active 
   Completed
 
   Clear Completed
-
-  Drag and drop to reorder list
+</div>
+  
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
@@ -50,7 +53,7 @@
 
   <button class="theme-toggle">Toggle Theme</button>
 
-
+<p>Drag and drop to reorder list</p>
 
 
   <script src="/script.js"></script>
