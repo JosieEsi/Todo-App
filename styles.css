@@ -26,6 +26,12 @@
    
  }
 
+ .moon{
+  right: 480px;
+   top: 45px;
+   position:absolute;
+ }
+
  .topbackground{
    background-color: transparent;
    position: relative;
@@ -41,12 +47,16 @@
  .todo-text{
   border: 12px solid white;
   border-radius: 5px;
-  width: 450px;
+  width: 500px;
   background-color: hsl(0, 0%, 98%);
+  box-shadow: none;
+  background:white;
+
   }
 
  .todo-tab{
    border: none;
+   border-color: white;
    
   
  }
@@ -54,10 +64,9 @@
  .todo-list{
    border: 12px solid white;
   border-radius: 5px;
-  width: 450px;
+  width: 500px;
   margin-top: 15px;
-  /* display: flex;
-  flex-direction: row; */
+
  }
 
  .new-todo{
@@ -65,6 +74,8 @@
    flex-direction: row;
    background-color: hsl(0, 0%, 98%);
    padding: 10px;
+   background: white;  
+   border-bottom: 0.5px solid gray;
  }
  
 .save{
@@ -72,11 +83,14 @@
    border: 3px solid white;
 }
 
+.completed-task {
+  text-decoration: line-through;
+  color: grey;
+}
 
-.todo-check{
-   background-color: white ;
-   border-radius: 70%;
-   margin-right: 10px;
+
+.endtext{
+  background-color: hsl(0, 0%, 98%);
 }
 
     @media screen and (max-width:375px){
