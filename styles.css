@@ -1,4 +1,5 @@
 @import url('https://fonts.google.com/specimen/Josefin+Sans');
+
 *{
     margin: 0;
     padding: 0;
@@ -7,15 +8,100 @@
 
 
 
-
-
-.attribution { font-size: 11px; text-align: center; }
+   body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Josefin Sans;
+}
+.attribution { 
+  font-size: 11px; 
+  text-align: center; 
+  /* margin-top: 50px; */
+}
  .attribution a { color: hsl(228, 45%, 44%); }
 
- .darkmode{
+
+ /* .lightmode{
+  background-color: greenyellow;
+ } */
+
+
+ 
+ .dark-mode{
     background-color: black;
+    color: white;
  }
 
+   /* :is(.dark-mode) .todo-form{
+  background-color:  hsl(237, 14%, 26%);
+  color: white; 
+
+ }  */
+
+ :is(.dark-mode) .todo-list{
+  background-color:  hsl(237, 14%, 26%);
+  color: white; 
+  border: solid hsl(237, 14%, 26%);
+  box-shadow:  2px 2px 1px 1px hsl(237, 14%, 26%);
+  border-radius: 5px;
+  width: 500px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+
+ } 
+
+ :is(.dark-mode) .new-todo{
+  background-color:  hsl(237, 14%, 26%);
+  color: white; 
+  border: hsl(237, 14%, 26%);
+  display:flex;
+  flex-direction: row;
+  padding: 15px;
+  background:  hsl(237, 14%, 26%);  
+  border-bottom: 0.5px solid gray;
+  position: relative;
+
+ } 
+ :is(.dark-mode) .endtext{
+  background-color:  hsl(237, 14%, 26%);
+  color: rgb(204, 196, 196); 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5rem;
+  padding: 1rem;
+  } 
+
+  
+
+ :is(.dark-mode) .todo-text{
+   color: white; 
+   border: 12px solid hsl(237, 14%, 26%);
+  border-radius: 5px;
+  width: 500px;
+  background-color:  hsl(237, 14%, 26%);
+  background: hsl(237, 14%, 26%);
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+
+ } 
+ :is(.dark-mode) .todo-tab{
+    color: white; 
+  border-color: hsl(237, 14%, 26%);
+  border: none; 
+  outline: none;
+  background-color: hsl(237, 14%, 26%);
+ } 
+
+ :is(.dark-mode)  button{
+  border: none;
+  box-shadow: none;
+  background-color: hsl(237, 14%, 26%);
+  color: rgb(204, 196, 196);
+  }
  .heading{
    
    color:white;
@@ -27,9 +113,16 @@
  }
 
  .moon{
-  right: 480px;
+   left: 930px;
    top: 45px;
    position:absolute;
+ }
+
+ .sun{
+   left: 930px;
+   top: 45px;
+   position:absolute;
+   background: none;
  }
 
  .topbackground{
@@ -37,46 +130,78 @@
    position: relative;
  }
 
+.todo-check{
+   margin-right: 15px;
+   margin-left: 10px;
+ }
+
+
+/* LIGHT MODE FEATURES*/
+ button{
+  border: none;
+  box-shadow: none;
+  background-color: white;
+  }
+
+ button:hover, button:active{
+  cursor: pointer;
+  color: blue;
+ 
+ }
 
  .todo-form{
    position: absolute;
    top: 120px;
    left: 450px;
+   
  }
 
  .todo-text{
   border: 12px solid white;
   border-radius: 5px;
   width: 500px;
-  background-color: hsl(0, 0%, 98%);
-  box-shadow: none;
+  background-color: hwb(0 98% 2%);
   background:white;
-
-  }
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+   }
 
  .todo-tab{
    border: none;
    border-color: white;
-   
+   outline: none;
   
  }
 
  .todo-list{
-   border: 12px solid white;
+  border:  solid white;
   border-radius: 5px;
   width: 500px;
   margin-top: 15px;
-
- }
+  box-shadow:  2px 5px 5px 1px hsl(0, 0%, 98%);
+  display: flex;
+  flex-direction: column;
+  }
 
  .new-todo{
    display:flex;
    flex-direction: row;
    background-color: hsl(0, 0%, 98%);
-   padding: 10px;
+   padding: 15px;
    background: white;  
    border-bottom: 0.5px solid gray;
+   position: relative;
+   
  }
+
+ 
+.delete-button{
+
+ position: absolute;
+ right: 20px;
+ top: 0px;
+}
  
 .save{
    box-shadow: none;
@@ -90,7 +215,55 @@
 
 
 .endtext{
-  background-color: hsl(0, 0%, 98%);
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  justify-content: space-between;
+  gap: 5rem;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+
+.delete-todo{
+  font-size: 37px;
+    display: none;
+  text-align: center;
+  justify-self: center;
+   }
+
+
+.list{
+  align-items: center;
+}
+
+.footer{
+  text-align: center;
+  margin-top: auto;
+  
+}
+
+:is(.new-todo:hover) .delete-todo{
+  display: flex;
+  text-align: right;
+  justify-items: flex-end;
+ }
+
+
+.list:hover{
+  cursor: pointer;
+}
+
+
+
+.todo-check:hover{
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+ .endtext-buttons button{
+color: red;
+justify-items: space-between;
 }
 
     @media screen and (max-width:375px){

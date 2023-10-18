@@ -21,6 +21,11 @@ toggleButton.addEventListener('click', () => {
 
 });
 
+function myFunction() {
+  const element = document.body;
+  element.classList.toggle("dark-mode");
+}
+
 // document.querySelector('.save').addEventListener('click', ()=> {
 //   addToDo();
 // });
@@ -71,8 +76,9 @@ function displayTodo(){
     const disp = `
     <div class="new-todo">
     <input class="todo-check" type="checkbox" data-index="${index}" ${completed  ? 'checked' : ''}>
-    <div class="${completedClass}">${name}</div>
-    <button class="delete-todo">&times</button>
+    <div class="${completedClass} list">${name}</div>
+    <div class="delete-button">
+    <button class="delete-todo">&times</button></div>
     </div>
     `
     ;
@@ -87,10 +93,12 @@ function displayTodo(){
 
 const filterCountSection = `
 <div class="endtext">
-  <span id="items-left">${incompleteCount}</span> items left
+  <span id="items-left">${incompleteCount}  items left</span>
+  <div class="endtext-buttons">
   <button class="all">All</button>
   <button class="active">Active</button>
   <button class="completed">Completed</button>
+  </div>
   <button class="clear-completed">Clear Completed</button>
 </div>
 `;
@@ -170,8 +178,9 @@ function displayFilteredTodo (filteredTodos) {
     const disp =`
     <div class="new-todo">
     <input class="todo-check" type="checkbox" data-index="${index}" ${completed  ? 'checked' : ''}>
-    <div class="${completedClass}">${name}</div>
-    <button class="delete-todo">&times</button>
+    <div class="${completedClass} list">${name}</div>
+    <div class="delete-button">
+    <button class="delete-todo">&times</button></div>
     </div>
     `;
 
@@ -181,14 +190,15 @@ function displayFilteredTodo (filteredTodos) {
 
   const filterCountSection = `
 <div class="endtext">
-  <span id="items-left">${todos.length}</span> items left
+  <span id="items-left">${todos.length} items left</span> 
+  <div class="endtext-buttons">
   <button class="all">All</button>
   <button class="active">Active</button>
   <button class="completed">Completed</button>
+  </div>
   <button class="clear-completed">Clear Completed</button>
 </div>
 `;
-
 
 
 theTodoList += filterCountSection;
@@ -216,8 +226,6 @@ function addToDo (){
 
  
 }
-
-
 
 
 

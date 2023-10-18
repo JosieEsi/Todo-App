@@ -16,9 +16,6 @@
 
 <div>
  
-
-
-
 <img src="/images/bg-desktop-light.jpg" alt="" class="lightmode desktop-image topbackground" id="desktop-lightmode">
 <img src="/images/bg-desktop-dark.jpg" alt="" class="darkmode desktop-image topbackground" style="display: none;" id="desktop-darkmode">
 
@@ -26,31 +23,38 @@
 
 <h1 class="heading">TODO</h1>
 
-<img class="moon" src="/images/icon-moon.svg" alt="">
-<img src="/images/icon-sun.svg" alt="">
+<img class="lightmode moon" src="/images/icon-moon.svg" alt="" id="desktop-lightmode">
+<img class="darkmode sun" src="/images/icon-sun.svg" alt="" style="display: none;" id="desktop-darkmode">
 
 
 
 </div>
 <div class="todo-form">
 <div class="todo-text">
-<input class="todo-check" type="checkbox">
+  <div class="todo-check">
+<input  type="checkbox" checked id="checkbox">
+<label  for="checkbox"></label>
+</div>
 <input type="text" placeholder="Create  a new to do..." class="todo-tab">
 <!-- <button class="save" type="submit">Save</button> -->
 </div>
 <div class="todo-list">
+  <div class="endtext">
+    <div class="endtext-buttons"></div>
+  </div>
+</div>
   
 </div>
 
-
+<p class="footer">Drag and drop to reorder list</p>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  
 
-  <button class="theme-toggle">Toggle Theme</button>
+  <button class="theme-toggle" onclick="myFunction()">Toggle Theme</button>
+</div>
 
-<p>Drag and drop to reorder list</p>
 
 
   <script src="/script.js"></script>
