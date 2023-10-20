@@ -16,7 +16,7 @@ toggleButton.addEventListener('click', () => {
     image.style.display = image.style.display === 'none' ? 'block' : 'none';
   });
 
-  document.body.style.backgroundColor = darkModeImages[0].style.display === 'block' ? 'black' : 'white';
+  document.body.style.backgroundColor = darkModeImages[0].style.display === 'block' ? 'black' : 'hwb(0 98% 2%)';
 
 
 });
