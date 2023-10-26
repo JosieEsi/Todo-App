@@ -20,7 +20,7 @@ toggleButton.addEventListener('click', () => {
 
 
 });
-
+toggleButton.addEventListener('click', myFunction)
 function myFunction() {
   const element = document.body;
   element.classList.toggle("dark-mode");
@@ -76,6 +76,7 @@ function displayTodo(){
     const disp = `
     <div class="new-todo">
     <input class="todo-check" type="checkbox" data-index="${index}" ${completed  ? 'checked' : ''}>
+    <label for="checkbox" data-index="${index}" ${completed  ? 'checked' : ''}></label>
     <div class="${completedClass} list">${name}</div>
     <div class="delete-button">
     <button class="delete-todo">&times</button></div>
@@ -108,9 +109,6 @@ const filterCountSection = `
 theTodoList += filterCountSection;
 
 
-  
-
-  // console.log(theTodoList);
 
   document.querySelector('.todo-list').innerHTML = theTodoList;
 
@@ -140,33 +138,60 @@ checkboxes.forEach((checkbox, index) => {
 }
 
 function activeFilterButtons (){
+  let isShowAllSelected = false;
+  let isShowActiveSelected = false;
+  let isShowCompletedSelected =  false;
+
 const showAll = document.querySelector('.all')
 showAll.addEventListener('click', () => {
   displayTodo();
-  console.log(showAll);
+  isShowAllSelected = true;
+  isShowActiveSelected = false;
+  isShowCompletedSelected = false;
+ updateButtonColor();
 })
 
 
 const showActive = document.querySelector('.active')
 showActive.addEventListener('click', () => {
 const activeTodos = todos.filter(todo => !todo.completed)
-  displayFilteredTodo(activeTodos)
-
+  displayFilteredTodo(activeTodos);
+  isShowAllSelected = false;
+  isShowActiveSelected = true;
+  isShowCompletedSelected = false;
+  updateButtonColor();
 })
 
 const showCompleted = document.querySelector('.completed')
 showCompleted.addEventListener('click', () => {
 const completedTodos = todos.filter(todo => todo.completed)
-displayFilteredTodo(completedTodos)
-
+displayFilteredTodo(completedTodos);
+isShowAllSelected = false;
+isShowActiveSelected = false;
+isShowCompletedSelected = true;
+updateButtonColor();
 })
 
 const clearCompleted = document.querySelector('.clear-completed')
 clearCompleted.addEventListener('click', () => {
 todos = todos.filter(todo => !todo.completed);
 displayTodo();
+isShowAllSelected = true;
+isShowActiveSelected = false;
+isShowCompletedSelected = false;
+updateButtonColor();
 })
+
+function updateButtonColor (){
+  showAll.style.color = isShowAllSelected ? '#0000ff' : '#808080';
+  console.log(showAll)
+  showActive.style.color = isShowActiveSelected ? '#0000ff' : '#808080';
+  showCompleted.style.color = isShowCompletedSelected ? '#0000ff' : '#808080';
+  }
+
 }
+
+
 
 function displayFilteredTodo (filteredTodos) {
   let theTodoList = '';
@@ -178,6 +203,7 @@ function displayFilteredTodo (filteredTodos) {
     const disp =`
     <div class="new-todo">
     <input class="todo-check" type="checkbox" data-index="${index}" ${completed  ? 'checked' : ''}>
+    <label for="checkbox" data-index="${index}" ${completed  ? 'checked' : ''}></label>
     <div class="${completedClass} list">${name}</div>
     <div class="delete-button">
     <button class="delete-todo">&times</button></div>
@@ -222,7 +248,7 @@ function addToDo (){
    console.log(name);
    
    toDoInput.value =  '';
-  displayTodo();
+   displayTodo();
 
  
 }
