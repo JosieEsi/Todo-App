@@ -1,9 +1,6 @@
 const toggleButton = document.querySelector('.theme-toggle');
 const lightModeImages = document.querySelectorAll('.lightmode');
 const darkModeImages = document.querySelectorAll('.darkmode');
-// const mobileImages = document.querySelectorAll('.mobile-image');
-// const desktopImages = document.querySelectorAll('.desktop-image');
-
 
 toggleButton.addEventListener('click', () => {
   // Toggle the visibility of light mode images
@@ -17,22 +14,16 @@ toggleButton.addEventListener('click', () => {
   });
 
   document.body.style.backgroundColor = darkModeImages[0].style.display === 'block' ? 'black' : 'hwb(0 98% 2%)';
-
-
 });
+
 toggleButton.addEventListener('click', myFunction)
 function myFunction() {
   const element = document.body;
   element.classList.toggle("dark-mode");
 }
 
-// document.querySelector('.save').addEventListener('click', ()=> {
-//   addToDo();
-// });
 
-
-
-
+//add a new item to the list
 const todoform = document.querySelector('.todo-text');
 todoform.addEventListener('keydown', (event) => {
  if (event.key === 'Enter'){
@@ -63,8 +54,6 @@ let todos = [{
 
 
 displayTodo();
-
-
 
 function displayTodo(){
 
@@ -107,16 +96,14 @@ const filterCountSection = `
 </div>
 `;
 
-
-
 theTodoList += filterCountSection;
 
 
 
-  document.querySelector('.todo-list').innerHTML = theTodoList;
+document.querySelector('.todo-list').innerHTML = theTodoList;
 
   const deleteTodoButtons = document.querySelectorAll('.delete-todo');
-  deleteTodoButtons.forEach((deleteButton, index) => {
+    deleteTodoButtons.forEach((deleteButton, index) => {
     deleteButton.addEventListener('click', () => {
       todos.splice(index, 1);
       displayTodo();
@@ -142,19 +129,11 @@ checkboxes.forEach((checkbox, index) => {
 
 
 function activeFilterButtons (){
-  
 
   const showAll = document.querySelector('.all')
   showAll.addEventListener('click', () => {
         displayTodo();
-        let color = showAll.style.color;
-         if (color === "#636060") { // if button color is red change it green otherwise change it to red.
-            showAll.style.color ='#0000ff';
-         } else {
-            showAll.style.color = '#636060';
-         }
-         console.log(showAll.style.color)
-    })
+  })
   
   
   const showActive = document.querySelector('.active')
@@ -261,7 +240,6 @@ function displayFilteredTodo (filteredTodos) {
   <button class="clear-completed">Clear Completed</button>
 </div>
 `;
-
 
 
 theTodoList += filterCountSection;
