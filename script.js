@@ -107,7 +107,6 @@ document.querySelector('.todo-list').innerHTML = theTodoList;
     deleteButton.addEventListener('click', () => {
       todos.splice(index, 1);
       displayTodo();
-
     })
   })
 
@@ -116,15 +115,15 @@ document.querySelector('.todo-list').innerHTML = theTodoList;
   dragAndDrop();
 }
 function activateCheckbox (){
-const checkboxes = document.querySelectorAll('.todo-check');
-checkboxes.forEach((checkbox, index) => {
-  checkbox.addEventListener('change', (event) => {
-    const index = event.target.getAttribute('data-index');
-    const toDo = todos[index]
-    toDo.completed = checkbox.checked;
-    displayTodo();
+  const checkboxes = document.querySelectorAll('.todo-check');
+  checkboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener('change', (event) => {
+      const index = event.target.getAttribute('data-index');
+      const toDo = todos[index]
+      toDo.completed = checkbox.checked;
+      displayTodo();
+    });
   });
-});
 }
 
 
@@ -175,31 +174,38 @@ function displayFilteredTodo (filteredTodos) {
     `;
 
     theTodoList += disp;
-
   });
 
-
-  
   
   const activeCount = filteredTodos.filter(todo => !todo.completed).length;
-  const completedCount = filteredTodos.filter(todo => todo.completed).length;
 
   const filterCountSection = `
-<div class="endtext">
-  <span id="items-left">${activeCount} items left</span> 
-  <div class="endtext-buttons">
-  <button class="all">All</button>
-  <button class="active">Active</button>
-  <button class="completed">Completed</button>
-  </div>
-  <button class="clear-completed">Clear Completed</button>
-</div>
-`;
+    <div class="endtext">
+      <span class="items-left">${activeCount} items left</span> 
+      <div class="endtext-buttons">
+      <button class="all">All</button>
+      <button class="active">Active</button>
+      <button class="completed">Completed</button>
+      </div>
+      <button class="clear-completed">Clear Completed</button>
+    </div>
+  `;
 
 
 theTodoList += filterCountSection;
 
   document.querySelector('.todo-list').innerHTML = theTodoList;
+
+
+  const deleteTodoButtons = document.querySelectorAll('.delete-todo');
+  deleteTodoButtons.forEach((deleteButton, index) => {
+  deleteButton.addEventListener('click', () => {
+    todos.splice(index, 1);
+    displayTodo();
+  })
+})
+
+
 
   activeFilterButtons();
   activateCheckbox();
