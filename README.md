@@ -15,7 +15,7 @@ Dark mode for comfortable night-time use.
 Drag and drop to reorder tasks.
 
 Access the code
-To get access to my code, git clone, 
+To get access to my code, git clone, https://github.com/JosieEsi/Todo-App.git
 
 
 Thanks!!!
