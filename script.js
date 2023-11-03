@@ -154,52 +154,7 @@ function activeFilterButtons (){
   displayTodo();
   })
    
-  
-  }
-
-
-/*
-function activeFilterButtons() {
-  const filterButtons = document.querySelectorAll('.endtext-buttons button');
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      // Remove the active-filter class from all filter buttons
-      filterButtons.forEach((btn) => {
-        btn.classList.remove('all');
-      });
-
-      // Add the active-filter class to the clicked button
-      button.classList.add('all');
-
-      // Handle the filter logic based on the button clicked
-      if (button.classList.contains('all')) {
-        // Show all to-do items
-        displayTodo();
-      } else if (button.classList.contains('active')) {
-        // Show active to-do items
-        const activeTodos = todos.filter((todo) => !todo.completed);
-        displayFilteredTodo(activeTodos);
-      } else if (button.classList.contains('completed')) {
-        // Show completed to-do items
-        const completedTodos = todos.filter((todo) => todo.completed);
-        displayFilteredTodo(completedTodos);
-      }
-    });
-  });
-
-  // Your existing code for filter buttons
-  // ...
-
-  const clearCompleted = document.querySelector('.clear-completed');
-  clearCompleted.addEventListener('click', () => {
-    todos = todos.filter((todo) => !todo.completed);
-    displayTodo();
-  });
 }
-*/
-
-
 
 
 function displayFilteredTodo (filteredTodos) {

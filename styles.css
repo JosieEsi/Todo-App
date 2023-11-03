@@ -30,7 +30,7 @@ body {
   color: hsl(228, 45%, 44%);
  }
 
-@media screen and (max-width:375px){
+@media screen and (max-width:430px){
   .topbackground{
     content:url('bg-mobile-light.jpg');
     background-color: transparent;
@@ -361,7 +361,7 @@ button{
 
 
    /* MEDIA SCREEN FOR TABLET AND LAPTOP */
-  @media screen and (min-width: 376px) and (max-width: 1440px){
+  @media screen and (min-width: 431px) and (max-width: 1450px){
     
 .dark-mode{
   background-color: black;
