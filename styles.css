@@ -29,7 +29,7 @@ body {
   color: hsl(228, 45%, 44%);
  }
 
-@media screen and (max-width:390px){
+@media screen and (max-width:425px){
   .topbackground{
     content:url('bg-mobile-light.jpg');
     background-color: transparent;
@@ -356,7 +356,7 @@ button{
   
 }
 /* MEDIA SCREEN FOR TABLET */
-@media screen and (max-width:1024px) and (min-width:391px){
+@media screen and (max-width:1024px) and (min-width:426px){
   .dark-mode{
     background-color: black;
     color: white;
@@ -470,26 +470,28 @@ button{
   .heading{
     color:white;
     letter-spacing: 8px;
-    left: 450px;
-    top: 65px;
+    left: 250px;
+    top: 40px;
     position:absolute;
     
   }
   
   .moon{
-    left: 930px;
-    top: 65px;
+    left: 730px;
+    top: 40px;
     position:absolute;
   }
   
   .sun{
-    left: 930px;
-    top: 65px;
+    left: 730px;
+    top: 40px;
     position:absolute;
     background: none;
   }
   
   .topbackground{
+    width: 1024px;
+    /* height: 300px; */
     background-color: transparent;
     position: relative;
   }
@@ -509,8 +511,8 @@ button{
   
   .todo-form{
     position: absolute;
-    top: 120px;
-    left: 450px;
+    top: 60px;
+    left: 250px;
     
   }
   
@@ -523,8 +525,8 @@ button{
     display: flex;
     flex-direction: row;
     padding: 5px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 45px;
+    margin-bottom: 17px;
     }
   
   .todo-tab{
@@ -537,7 +539,7 @@ button{
   
   .todo-list{
     width: 500px;
-    margin-top: 15px;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     box-shadow:    0.3em 0.3em 2em rgb(204, 201, 201);;
@@ -612,7 +614,7 @@ button{
     clear: both;
     position: absolute;
     top: 650px;
-    left: 525px;
+    left: 325px;
     padding-bottom: 30px;
   }
   
@@ -639,6 +641,7 @@ button{
   
   .endtext-buttons button{
     color: #636060;
+    font-weight: bold;
   }
   
   .endtext-buttons button:hover{
