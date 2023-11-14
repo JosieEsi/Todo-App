@@ -51,9 +51,29 @@ let todos = [{
     completed: false}     
   
 ];
-
+let activeFilter = 'all';
 
 displayTodo();
+
+function updateButtonColor() {
+  const element = document.body;
+  const isDarkMode = element.classList.contains('dark-mode');
+  const showAll = document.querySelector('.all');
+  const showActive = document.querySelector('.active');
+  const showCompleted = document.querySelector('.completed');
+  // Set colors based on the active filter and dark mode status.
+  // showAll.style.color = activeFilter === 'all' ? (isDarkMode ? 'white' : 'black') : 'gray';
+  showActive.style.color = activeFilter === 'active' ? (isDarkMode ? 'white' : 'black') : 'gray';
+  showCompleted.style.color = activeFilter === 'completed' ? (isDarkMode ? 'white' : 'black') : 'gray';
+}
+
+// function deleteTodo(index){
+
+//   todos.splice(index,1)
+   
+// //   console.log(index)
+//   displayTodo()
+// }
 
 function displayTodo(){
 
@@ -110,13 +130,50 @@ document.querySelector('.todo-list').innerHTML = theTodoList;
     })
   })
 
+  // const deleteTodoButtons = document.querySelectorAll('.delete-todo');
+  // deleteTodoButtons.forEach(function(deleteButton){
+  //   deleteButton.addEventListener('click', function(e){
+  //     deleteTodo(e.target.dataset?.id)
+  //   })
+  // })
+
+
   activeFilterButtons();
+  updateButtonColor();
   activateCheckbox();
   dragAndDrop();
 }
+
+function activateCheckbox() {
+  const checkboxes = document.querySelectorAll('.todo-check');
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', (event) => {
+      const index = event.target.getAttribute('data-index');
+      const toDo = todos[index];
+      toDo.completed = checkbox.checked;
+
+      // Instead of always showing all todos, determine which to show based on activeFilter
+      if (activeFilter === 'all') {
+        displayTodo();
+      } else if (activeFilter === 'active') {
+        const activeTodos = todos.filter(todo => !todo.completed);
+        displayFilteredTodo(activeTodos);
+      } else if (activeFilter === 'completed') {
+        const completedTodos = todos.filter(todo => todo.completed);
+        displayFilteredTodo(completedTodos);
+      }
+
+      // Keep the filter buttons in sync with current filter state
+      updateButtonColor();
+    });
+  });
+}
+
+
+/*
 function activateCheckbox (){
   const checkboxes = document.querySelectorAll('.todo-check');
-  checkboxes.forEach((checkbox, index) => {
+  checkboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', (event) => {
       const index = event.target.getAttribute('data-index');
       const toDo = todos[index]
@@ -125,8 +182,96 @@ function activateCheckbox (){
     });
   });
 }
+*/
+
+/*
+function activateCheckbox() {
+  const checkboxes = document.querySelectorAll('.todo-check');
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', (event) => {
+      const index = event.target.getAttribute('data-index');
+      todos[index].completed = checkbox.checked;
+      if (document.querySelector('.active').classList.contains('selected')) {
+        displayFilteredTodo(todos.filter(todo => !todo.completed));
+      } else if (document.querySelector('.completed').classList.contains('selected')) {
+        displayFilteredTodo(todos.filter(todo => todo.completed));
+      } else {
+        displayTodo();
+      }
+    });
+  });
+}*/
+
+/*
+function activeFilterButtons() {
+  const all = document.querySelector('.all');
+  const active = document.querySelector('.active');
+  const completed = document.querySelector('.completed');
+  all.addEventListener('click', () => {
+    clearSelectedButton();
+    all.classList.add('selected');
+    displayTodo();
+  });
+  active.addEventListener('click', () => {
+    clearSelectedButton();
+    active.classList.add('selected');
+    displayFilteredTodo(todos.filter(todo => !todo.completed));
+  });
+  completed.addEventListener('click', () => {
+    clearSelectedButton();
+    completed.classList.add('selected');
+    displayFilteredTodo(todos.filter(todo => todo.completed));
+  });
+
+  function clearSelectedButton() {
+    document.querySelector('.selected')?.classList.remove('selected');
+  }
+  const clearCompleted = document.querySelector('.clear-completed');
+  clearCompleted.addEventListener('click', () => {
+    todos = todos.filter(todo => !todo.completed);
+    displayTodo();
+  });
+}
+*/
+
+function activeFilterButtons() {
+
+  const showAll = document.querySelector('.all');
+  const showActive = document.querySelector('.active');
+  const showCompleted = document.querySelector('.completed');
+  showAll.addEventListener('click', () => {
+    activeFilter = 'all';
+    updateButtonColor();
+    displayTodo();
+  });
+  showActive.addEventListener('click', () => {
+    activeFilter = 'active';
+    updateButtonColor();
+    const activeTodos = todos.filter(todo => !todo.completed);
+    displayFilteredTodo(activeTodos);
+  });
+  showCompleted.addEventListener('click', () => {
+    activeFilter = 'completed';
+    updateButtonColor();
+    const completedTodos = todos.filter(todo => todo.completed);
+    displayFilteredTodo(completedTodos);
+  });
+  const clearCompleted = document.querySelector('.clear-completed');
+  clearCompleted.addEventListener('click', () => {
+    activeFilter = 'all'; // Reset to "All" when "Clear Completed" is clicked.
+    updateButtonColor(); // Update the button colors.
+    todos = todos.filter(todo => !todo.completed);
+    displayTodo();
+  });
 
 
+  // Set the initial colors correctly.
+  updateButtonColor();
+}
+// Call activeFilterButtons to set up the event listeners on the buttons.
+activeFilterButtons();
+
+/*
 function activeFilterButtons (){
 
   const showAll = document.querySelector('.all')
@@ -154,11 +299,28 @@ function activeFilterButtons (){
   })
    
 }
+*/
 
 
 function displayFilteredTodo (filteredTodos) {
   let theTodoList = '';
 
+  filteredTodos.forEach(function(toDo) {
+    const originalIndex = todos.findIndex(originalTodo => originalTodo.name === toDo.name && originalTodo.completed === toDo.completed);
+    const completedClass = toDo.completed ? 'completed-task' : '';
+    const disp = `
+    <div class="new-todo" draggable="true">
+    <input class="todo-check" type="checkbox" data-index="${originalIndex}" ${toDo.completed ? 'checked' : ''}>
+    <label for="checkbox" data-index="${originalIndex}" ${toDo.completed ? 'checked' : ''}></label>
+    <div class="${completedClass} list">${toDo.name}</div>
+    <div class="delete-button">
+    <button class="delete-todo" data-index="${originalIndex}">&times</button></div>
+    </div>
+    `;
+    theTodoList += disp;
+  });
+  
+/*
   filteredTodos.forEach(function (toDo, index) {
     const name = toDo.name;
     const completed = toDo.completed;
@@ -175,7 +337,7 @@ function displayFilteredTodo (filteredTodos) {
 
     theTodoList += disp;
   });
-
+*/
   
   const activeCount = filteredTodos.filter(todo => !todo.completed).length;
 
@@ -200,16 +362,44 @@ theTodoList += filterCountSection;
   const deleteTodoButtons = document.querySelectorAll('.delete-todo');
   deleteTodoButtons.forEach((deleteButton, index) => {
   deleteButton.addEventListener('click', () => {
-    todos.splice(index, 1);
-    displayTodo();
-  })
-})
+    if (activeFilter === 'all') {
+      deleteTodoAtIndex(index);
+    } else {
+      // Find index in the main todos array corresponding to the display index
+      const trueIndex = todos.findIndex((todo, todoIndex) => {
+        if (activeFilter === 'active') return !todo.completed && (filteredTodos[index].name === todo.name);
+        if (activeFilter === 'completed') return todo.completed && (filteredTodos[index].name === todo.name);
+      });
+      deleteTodoAtIndex(trueIndex);
+    }
+  });
+});
+
+
 
 
 
   activeFilterButtons();
+  updateButtonColor();
   activateCheckbox();
   dragAndDrop();
+}
+
+
+function deleteTodoAtIndex(index) {
+  todos.splice(index, 1);
+  maintainActiveFilter();
+}
+
+function maintainActiveFilter() {
+  if (activeFilter === 'active') {
+    displayFilteredTodo(todos.filter(todo => !todo.completed));
+  } else if (activeFilter === 'completed') {
+    displayFilteredTodo(todos.filter(todo => todo.completed));
+  } else {
+    displayTodo();
+  }
+  updateButtonColor(); // Update button colors after filtering
 }
 
 function addToDo (){
