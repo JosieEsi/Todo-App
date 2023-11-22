@@ -223,28 +223,28 @@ const addToDo = () => {
 const dragAndDrop = () => {
   let dragSrcElement = null;
   
-  const handleDragStart = (e) => {
+  function handleDragStart(e){
     dragSrcElement = this;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
   }
   
-  const handleDragOver = (e) => {
+  function handleDragOver(e){
     if (e.preventDefault) {
       e.preventDefault();
     }
     return false;
   }
   
-  const handleDragEnter = (e) => {
+  function handleDragEnter(e){
     this.classList.add('over');
   }
   
-  const handleDragLeave = (e) => {
+  function handleDragLeave(e){
     this.classList.remove('over');
   }
   
-  const handleDrop = (e) => {
+  function handleDrop(e){
     if (e.stopPropagation) {
       e.stopPropagation();
     }
@@ -257,7 +257,7 @@ const dragAndDrop = () => {
     return false;
   }
   
-  const handleDragEnd = () => {
+  function handleDragEnd(){
     this.classList.remove('over');
   }
   
