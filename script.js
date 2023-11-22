@@ -1,78 +1,10 @@
-const toggleButton = document.querySelector('.theme-toggle');
-const lightModeImages = document.querySelectorAll('.lightmode');
-const darkModeImages = document.querySelectorAll('.darkmode');
-
-toggleButton.addEventListener('click', () => {
-  // Toggle the visibility of light mode images
-  lightModeImages.forEach((image) => {
-    image.style.display = image.style.display === 'none' ? 'block' : 'none';
-  });
-
-  // Toggle the visibility of dark mode images
-  darkModeImages.forEach((image) => {
-    image.style.display = image.style.display === 'none' ? 'block' : 'none';
-  });
-
-  document.body.style.backgroundColor = darkModeImages[0].style.display === 'block' ? 'black' : 'hwb(0 98% 2%)';
-});
-
-toggleButton.addEventListener('click', myFunction)
-function myFunction() {
-  const element = document.body;
-  element.classList.toggle("dark-mode");
-}
-
-
-//add a new item to the list
-const todoform = document.querySelector('.todo-text');
-todoform.addEventListener('keydown', (event) => {
- if (event.key === 'Enter'){
-  addToDo();
- }
-})
-
-let todos = [{
-  name: "Complete online JavaScript course",
-  completed: true},
-  {
-  name: "Jog around the park 3x",
-  completed: false},
-  {
-    name: "10 minutes meditation",
-    completed: false},
-  {
-    name: "Read for 1 hour",
-    completed: false},
-  {
-    name: "Pick up groceries",
-    completed: false},
-  {
-    name: "Complete ToDo App on Frontend Mentor",
-    completed: false}     
-  
-];
-let activeFilter = 'all';
-
-displayTodo();
-
-function updateButtonColor() {
-  const element = document.body;
-  const isDarkMode = element.classList.contains('dark-mode');
-  const showActive = document.querySelector('.active');
-  const showCompleted = document.querySelector('.completed');
-  // Set colors based on the active filter and dark mode status.
-  showActive.style.color = activeFilter === 'active' ? (isDarkMode ? 'white' : 'black') : 'gray';
-  showCompleted.style.color = activeFilter === 'completed' ? (isDarkMode ? 'white' : 'black') : 'gray';
-}
-
-
-function displayTodo(){
+const displayTodo = () => {
 
   let theTodoList = '';
   let incompleteCount = 0;
   
 
-  todos.forEach(function(toDo, index){
+  todos.forEach((toDo, index) => {
     const name = toDo.name;
     const completed = toDo.completed;
     const completedClass = completed ? 'completed-task' : '';
@@ -127,7 +59,22 @@ document.querySelector('.todo-list').innerHTML = theTodoList;
   dragAndDrop();
 }
 
-function activateCheckbox() {
+const toggleDarkMode = () => {
+  const element = document.body;
+  element.classList.toggle("dark-mode");
+}
+
+const updateButtonColor = () => {
+  const element = document.body;
+  const isDarkMode = element.classList.contains('dark-mode');
+  const showActive = document.querySelector('.active');
+  const showCompleted = document.querySelector('.completed');
+  // Set colors based on the active filter and dark mode status.
+  showActive.style.color = activeFilter === 'active' ? (isDarkMode ? 'white' : 'black') : 'gray';
+  showCompleted.style.color = activeFilter === 'completed' ? (isDarkMode ? 'white' : 'black') : 'gray';
+}
+
+const activateCheckbox = () => {
   const checkboxes = document.querySelectorAll('.todo-check');
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', (event) => {
@@ -150,7 +97,7 @@ function activateCheckbox() {
   });
 }
 
-function activeFilterButtons() {
+const activeFilterButtons = () => {
   const showAll = document.querySelector('.all');
   const showActive = document.querySelector('.active');
   const showCompleted = document.querySelector('.completed');
@@ -182,13 +129,10 @@ function activeFilterButtons() {
   updateButtonColor();
 }
 
-activeFilterButtons();
-
-
-function displayFilteredTodo (filteredTodos) {
+const displayFilteredTodo = (filteredTodos) => {
   let theTodoList = '';
 
-  filteredTodos.forEach(function(toDo) {
+  filteredTodos.forEach((toDo) => {
     const originalIndex = todos.findIndex(originalTodo => originalTodo.name === toDo.name && originalTodo.completed === toDo.completed);
     const completedClass = toDo.completed ? 'completed-task' : '';
     const disp = `
@@ -247,12 +191,12 @@ function displayFilteredTodo (filteredTodos) {
 }
 
 
-function deleteTodoAtIndex(index) {
+const deleteTodoAtIndex = (index) => {
   todos.splice(index, 1);
   maintainActiveFilter();
 }
 
-function maintainActiveFilter() {
+const maintainActiveFilter = () => {
   if (activeFilter === 'active') {
     displayFilteredTodo(todos.filter(todo => !todo.completed));
   } else if (activeFilter === 'completed') {
@@ -263,69 +207,127 @@ function maintainActiveFilter() {
   updateButtonColor(); 
 }
 
-function addToDo (){
+const addToDo = () => {
 
    const toDoInput = document.querySelector('.todo-tab');
    const name = toDoInput.value;
 
    todos.push({name});
-   console.log(name);
+   
    
    toDoInput.value =  '';
    displayTodo();
   
 }
 
-function dragAndDrop (){
-let dragSrcElement = null;
-
-function handleDragStart(e) {
-  dragSrcElement = this;
-  e.dataTransfer.effectAllowed = 'move';
-  e.dataTransfer.setData('text/html', this.innerHTML);
-}
-
-function handleDragOver(e) {
-  if (e.preventDefault) {
-    e.preventDefault();
+const dragAndDrop = () => {
+  let dragSrcElement = null;
+  
+  const handleDragStart = (e) => {
+    dragSrcElement = this;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
   }
-  return false;
-}
-
-function handleDragEnter(e) {
-  this.classList.add('over');
-}
-
-function handleDragLeave(e) {
-  this.classList.remove('over');
-}
-
-function handleDrop(e) {
-  if (e.stopPropagation) {
-    e.stopPropagation();
+  
+  const handleDragOver = (e) => {
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+    return false;
   }
-
-  if (dragSrcElement !== this) {
-    dragSrcElement.innerHTML = this.innerHTML;
-    this.innerHTML = e.dataTransfer.getData('text/html');
+  
+  const handleDragEnter = (e) => {
+    this.classList.add('over');
   }
-
-  return false;
+  
+  const handleDragLeave = (e) => {
+    this.classList.remove('over');
+  }
+  
+  const handleDrop = (e) => {
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    }
+  
+    if (dragSrcElement !== this) {
+      dragSrcElement.innerHTML = this.innerHTML;
+      this.innerHTML = e.dataTransfer.getData('text/html');
+    }
+  
+    return false;
+  }
+  
+  const handleDragEnd = () => {
+    this.classList.remove('over');
+  }
+  
+  // Add event listeners to enable drag and drop for each to-do item
+  const ntodos = document.querySelectorAll('.new-todo');
+  ntodos.forEach(ntodo => {
+    ntodo.addEventListener('dragstart', handleDragStart);
+    ntodo.addEventListener('dragover', handleDragOver);
+    ntodo.addEventListener('dragenter', handleDragEnter);
+    ntodo.addEventListener('dragleave', handleDragLeave);
+    ntodo.addEventListener('drop', handleDrop);
+    ntodo.addEventListener('dragend', handleDragEnd);
+    });
 }
 
-function handleDragEnd() {
-  this.classList.remove('over');
-}
 
-// Add event listeners to enable drag and drop for each to-do item
-const ntodos = document.querySelectorAll('.new-todo');
-ntodos.forEach(ntodo => {
-  ntodo.addEventListener('dragstart', handleDragStart);
-  ntodo.addEventListener('dragover', handleDragOver);
-  ntodo.addEventListener('dragenter', handleDragEnter);
-  ntodo.addEventListener('dragleave', handleDragLeave);
-  ntodo.addEventListener('drop', handleDrop);
-  ntodo.addEventListener('dragend', handleDragEnd);
+const toggleButton = document.querySelector('.theme-toggle');
+const lightModeImages = document.querySelectorAll('.lightmode');
+const darkModeImages = document.querySelectorAll('.darkmode');
+
+toggleButton.addEventListener('click', () => {
+  // Toggle the visibility of light mode images
+  lightModeImages.forEach((image) => {
+    image.style.display = image.style.display === 'none' ? 'block' : 'none';
   });
-}
+
+  // Toggle the visibility of dark mode images
+  darkModeImages.forEach((image) => {
+    image.style.display = image.style.display === 'none' ? 'block' : 'none';
+  });
+
+  document.body.style.backgroundColor = darkModeImages[0].style.display === 'block' ? 'black' : 'hwb(0 98% 2%)';
+});
+
+toggleButton.addEventListener('click', toggleDarkMode)
+
+
+//add a new item to the list
+const todoform = document.querySelector('.todo-text');
+todoform.addEventListener('keydown', (event) => {
+ if (event.key === 'Enter'){
+  addToDo();
+ }
+})
+
+let todos = [{
+  name: "Complete online JavaScript course",
+  completed: true},
+  {
+  name: "Jog around the park 3x",
+  completed: false},
+  {
+    name: "10 minutes meditation",
+    completed: false},
+  {
+    name: "Read for 1 hour",
+    completed: false},
+  {
+    name: "Pick up groceries",
+    completed: false},
+  {
+    name: "Complete ToDo App on Frontend Mentor",
+    completed: false}     
+  
+];
+let activeFilter = 'all';
+
+displayTodo();
+activeFilterButtons();
+
+
+
 

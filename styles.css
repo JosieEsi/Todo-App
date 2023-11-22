@@ -137,6 +137,7 @@ body {
 }
 
 .endtext-buttons {
+  font-weight: bold;
   position: absolute;
   top: 55px;
   left: 0px;
@@ -152,6 +153,11 @@ body {
   margin-bottom: 10px;
   box-shadow: 0.3em 0.3em 2em rgb(204, 201, 201);
           
+}
+
+.endtext-buttons button{
+  color: #636060;
+  font-weight: bold;
 }
 
 .endtext-buttons button.all{
@@ -178,7 +184,7 @@ footer{
   text-align: center;
   position: absolute;
   top: 650px;
-  left: 20px;
+  left: 80px;
   padding-bottom: 30px;
  
 }
@@ -491,7 +497,6 @@ button{
   
   .topbackground{
     width: 1024px;
-    /* height: 300px; */
     background-color: transparent;
     position: relative;
   }
@@ -614,7 +619,7 @@ button{
     clear: both;
     position: absolute;
     top: 650px;
-    left: 325px;
+    left: 400px;
     padding-bottom: 30px;
   }
   
@@ -956,7 +961,7 @@ footer{
   clear: both;
   position: absolute;
   top: 650px;
-  left: 525px;
+  left: 570px;
   padding-bottom: 30px;
 }
 
@@ -983,6 +988,7 @@ footer{
 
 .endtext-buttons button{
   color: #636060;
+  font-weight: bold;
 }
 
 .endtext-buttons button:hover{
